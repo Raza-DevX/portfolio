@@ -75,7 +75,7 @@ a {
   transform: scale(1.1);
 }
 .logo span{
-  background: linear-gradient(270deg, #df8908 10%, #ff1d15 100%);
+  background: linear-gradient(270deg, #798ae1 10%, #ff1d15 100%);
   background-clip: text;
   color: transparent;
 }
