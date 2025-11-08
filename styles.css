@@ -74,7 +74,7 @@ a {
 .logo:hover {
   transform: scale(1.1);
 }
-.logo span{
+.logo span {
   background: linear-gradient(270deg, #798ae1 10%, #ff1d15 100%);
   background-clip: text;
   color: transparent;
@@ -211,7 +211,7 @@ nav {
   position: relative;
   isolation: isolate;
   max-width: 400px;
-  margin: auto;
+  /* margin: auto; */
 }
 
 .about__img {
@@ -242,7 +242,13 @@ nav {
 .about__content .section__description {
   margin-bottom: 2rem;
 }
-
+.service__container .section__header{
+  text-align: left;
+}
+.service__container .section__description{
+  text-align: left;
+  margin: 0;
+}
 .service__grid {
   margin-top: 2rem;
   display: grid;
@@ -278,16 +284,22 @@ nav {
   margin-top: 2rem;
   display: grid;
   gap: 1rem;
+  row-gap: 2rem;
 }
 
 .portfolio__card {
   overflow: hidden;
   border-radius: 1rem;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 15px 15px 30px 15px;
 }
 
 .portfolio__card img {
   transition: 0.5s;
+  margin-bottom: 10px;
 }
 
 .portfolio__card:hover img {
@@ -351,7 +363,18 @@ nav {
   background: var(--gradient-2);
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
 }
-
+.contact__socials .whatsapp:hover {
+  background: #47a22f ;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+}
+.contact__socials .linkedin:hover {
+  background: #0a66c2 ;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+}
+.contact__socials .instagram:hover {
+  background: #db00ec ;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+}
 .footer {
   padding: 1rem;
   font-size: 0.9rem;
