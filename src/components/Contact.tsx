@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Mail, MessageSquare, Github, Linkedin } from "lucide-react";
+import { Instagram } from "lucide-react";
 
 const Contact = () => {
   return (
@@ -92,15 +93,23 @@ const Contact = () => {
 
               <div className="flex items-center justify-center gap-4 pt-6 border-t border-border">
                 {/* GitHub Link */}
-                <a
+                {/* <a
                   href="https://github.com/Raza-DevX" // ⬅️ GitHub URL added here
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-12 h-12 rounded-lg bg-secondary flex items-center justify-center hover:bg-primary/10 hover:text-primary transition-colors"
                 >
                   <Github className="w-5 h-5" />
+                </a> */}
+                /* Instagram Link */
+                <a
+                  href="https://www.instagram.com/razadeveloperx/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-12 h-12 rounded-lg bg-secondary flex items-center justify-center hover:bg-primary/10 hover:text-primary transition-colors"
+                >
+                  <Instagram className="w-5 h-5" />
                 </a>
-
                 {/* LinkedIn Link */}
                 <a
                   href="https://www.linkedin.com/in/razadeveloperx/" // ⬅️ LinkedIn URL added here
