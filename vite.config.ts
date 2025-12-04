@@ -10,7 +10,7 @@ export default defineConfig({
   },
   
   // Your GitHub Pages repository path
-  base: "/portfolio/",
+  base: "/portfolio",
   
   plugins: [
     react()
