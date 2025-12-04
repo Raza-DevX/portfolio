@@ -39,10 +39,11 @@ const Header = () => {
       }`}
     >
       <div className="container mx-auto px-6 py-4 flex items-center justify-between">
-        {/* Logo */}
-        <a href="/">
-          <img src="/razadevx.webp" alt="DevX Logo" className="h-10 w-auto" />
-        </a>
+    {/* Logo */}
+    <a href="/portfolio/">
+      <img src="/portfolio/razadevx.webp" alt="DevX Logo" className="h-10 w-auto" />
+    </a>
+    {/* Desktop Navigation */}
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-8">
           {navItems.map((item) => (
