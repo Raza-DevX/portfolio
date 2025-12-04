@@ -101,7 +101,6 @@ const Contact = () => {
                 >
                   <Github className="w-5 h-5" />
                 </a> */}
-                /* Instagram Link */
                 <a
                   href="https://www.instagram.com/razadeveloperx/"
                   target="_blank"
@@ -110,7 +109,6 @@ const Contact = () => {
                 >
                   <Instagram className="w-5 h-5" />
                 </a>
-                {/* LinkedIn Link */}
                 <a
                   href="https://www.linkedin.com/in/razadeveloperx/" // ⬅️ LinkedIn URL added here
                   target="_blank"

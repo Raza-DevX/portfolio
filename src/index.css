@@ -96,6 +96,6 @@ img.h-10.w-auto {
 }
 @media (min-width: 1024px) {
     .lg\:text-8xl {
-        font-size: 5rem;
+        font-size: 5rem !important;
     }
 }
