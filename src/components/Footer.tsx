@@ -4,9 +4,9 @@ const Footer = () => {
       <div className="container mx-auto px-6">
         <div className="flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            <a href="/">
+            <a href="/portfolio/">
               <img
-                src="/razadevx.webp"
+                src="/portfolio/razadevx.webp"
                 alt="RazaDevX Logo"
                 className="h-10 w-auto"
               />

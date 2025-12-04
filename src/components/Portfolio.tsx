@@ -7,42 +7,42 @@ const Portfolio = () => {
       title: "MSP Tows",
       description: "Car Towing Services Platform",
       category: "Service Industry",
-      image: "/msptows.webp", // Assuming your images are in public/images/
+      image: "/portfolio/msptows.webp", // UPDATED URL
       link: "https://msptows.com/", // Add your project link here
     },
     {
       title: "Cerberus Security",
       description: "Security Guard Services",
       category: "Security",
-      image: "/cerberus-security.webp",
+      image: "/portfolio/cerberus-security.webp", // UPDATED URL
       link: "https://cerberussec.co.uk",
     },
     {
       title: "Swift Guard Security",
       description: "Professional Security Services",
       category: "Security",
-      image: "/swift-guard-security.webp",
+      image: "/portfolio/swift-guard-security.webp", // UPDATED URL
       link: "https://swiftguardsecurity.com",
     },
     {
       title: "World Boss Group",
       description: "Phone Accessories & Repair",
       category: "E-Commerce",
-      image: "/worldbossgroup.webp",
+      image: "/portfolio/worldbossgroup.webp", // UPDATED URL
       link: "https://worldbossgroup.com",
     },
     {
       title: "Weaversha Accountants",
       description: "Professional Accounting Services",
       category: "Finance",
-      image: "/weaversha.webp",
+      image: "/portfolio/weaversha.webp", // UPDATED URL
       link: "https://weaversha.co.uk/",
     },
     {
       title: "Euro Mattress",
       description: "Premium Mattress Store",
       category: "E-Commerce",
-      image: "/euro-mattress.webp",
+      image: "/portfolio/euro-mattress.webp", // UPDATED URL
       link: "https://euromattress.co.uk",
     },
   ];
@@ -56,10 +56,12 @@ const Portfolio = () => {
               Portfolio
             </div>
             <h2 className="text-4xl md:text-5xl font-bold">
-              My Work — <span className="gradient-text">Crafted With Purpose</span>
+              My Work —{" "}
+              <span className="gradient-text">Crafted With Purpose</span>
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              A glimpse into the websites I've designed and developed — clean interfaces, functional design, and real user experience.
+              A glimpse into the websites I've designed and developed — clean
+              interfaces, functional design, and real user experience.
             </p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -88,9 +90,13 @@ const Portfolio = () => {
                     </div>
                   </div>
                   <CardContent className="p-6 space-y-2">
-                    <div className="text-xs text-primary font-semibold">{project.category}</div>
+                    <div className="text-xs text-primary font-semibold">
+                      {project.category}
+                    </div>
                     <h3 className="text-xl font-bold">{project.title}</h3>
-                    <p className="text-sm text-muted-foreground">{project.description}</p>
+                    <p className="text-sm text-muted-foreground">
+                      {project.description}
+                    </p>
                   </CardContent>
                 </Card>
               </a>
