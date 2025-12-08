@@ -35,6 +35,21 @@ const testimonials = [
 const Testimonials = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
+  const [itemsPerView, setItemsPerView] = useState(1);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 1024) {
+        setItemsPerView(3);
+      } else {
+        setItemsPerView(1);
+      }
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const nextTestimonial = () => {
     if (isAnimating) return;
@@ -60,6 +75,16 @@ const Testimonials = () => {
     return () => clearInterval(autoPlay);
   }, [isAnimating]);
 
+  const getVisibleTestimonials = () => {
+    const visible = [];
+    for (let i = 0; i < itemsPerView; i++) {
+      visible.push(testimonials[(currentIndex + i) % testimonials.length]);
+    }
+    return visible;
+  };
+
+  const visibleTestimonials = getVisibleTestimonials();
+
   return (
     <section id="testimonials" className="py-20 md:py-32 bg-card/30 relative overflow-hidden">
       {/* Background Elements */}
@@ -83,59 +108,66 @@ const Testimonials = () => {
         </div>
 
         {/* Testimonial Carousel */}
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-7xl mx-auto">
           <div className="relative">
-            {/* Quote Icon */}
-            <div className="absolute -top-6 left-1/2 -translate-x-1/2 z-10">
-              <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center border border-primary/20">
-                <Quote className="w-5 h-5 text-primary" />
-              </div>
-            </div>
-
-            {/* Main Card */}
-            <div className="bg-card/50 backdrop-blur-sm border border-border/50 rounded-2xl p-8 md:p-12 relative overflow-hidden">
-              {/* Glow Effect */}
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-transparent" />
-
-              <div
-                key={currentIndex}
-                className={`relative z-10 transition-all duration-500 ${
-                  isAnimating ? "opacity-0 translate-y-4" : "opacity-100 translate-y-0"
-                }`}
-              >
-                {/* Stars */}
-                <div className="flex justify-center gap-1 mb-6">
-                  {[...Array(testimonials[currentIndex].rating)].map((_, i) => (
-                    <Star
-                      key={i}
-                      className="w-5 h-5 fill-primary text-primary"
-                      style={{ animationDelay: `${i * 100}ms` }}
-                    />
-                  ))}
-                </div>
-
-                {/* Quote Text */}
-                <blockquote className="text-lg md:text-xl text-foreground/90 text-center leading-relaxed mb-8 font-light">
-                  "{testimonials[currentIndex].text}"
-                </blockquote>
-
-                {/* Author */}
-                <div className="flex flex-col items-center">
-                  <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-primary/30 mb-4 ring-4 ring-primary/10">
-                    <img
-                      src={testimonials[currentIndex].image}
-                      alt={testimonials[currentIndex].name}
-                      className="w-full h-full object-cover"
-                    />
+            {/* Testimonial Grid */}
+            <div
+              className={`grid gap-6 transition-all duration-500 ${
+                itemsPerView === 3 ? 'grid-cols-3' : 'grid-cols-1'
+              } ${
+                isAnimating ? "opacity-0 translate-y-4" : "opacity-100 translate-y-0"
+              }`}
+            >
+              {visibleTestimonials.map((testimonial, idx) => (
+                <div
+                  key={`${currentIndex}-${idx}`}
+                  className="bg-card/50 backdrop-blur-sm border border-border/50 rounded-2xl p-6 md:p-8 relative overflow-hidden"
+                >
+                  {/* Quote Icon */}
+                  <div className="absolute -top-2 -right-2 opacity-10">
+                    <Quote className="w-20 h-20 text-primary" />
                   </div>
-                  <h4 className="text-foreground font-semibold text-lg">
-                    {testimonials[currentIndex].name}
-                  </h4>
-                  <p className="text-muted-foreground text-sm">
-                    {testimonials[currentIndex].role}
-                  </p>
+
+                  {/* Glow Effect */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-transparent" />
+
+                  <div className="relative z-10">
+                    {/* Stars */}
+                    <div className="flex gap-1 mb-4">
+                      {[...Array(testimonial.rating)].map((_, i) => (
+                        <Star
+                          key={i}
+                          className="w-4 h-4 fill-primary text-primary"
+                        />
+                      ))}
+                    </div>
+
+                    {/* Quote Text */}
+                    <blockquote className="text-base text-foreground/90 leading-relaxed mb-6 font-light">
+                      "{testimonial.text}"
+                    </blockquote>
+
+                    {/* Author */}
+                    <div className="flex items-center gap-3">
+                      <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-primary/30 ring-2 ring-primary/10 flex-shrink-0">
+                        <img
+                          src={testimonial.image}
+                          alt={testimonial.name}
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                      <div>
+                        <h4 className="text-foreground font-semibold text-sm">
+                          {testimonial.name}
+                        </h4>
+                        <p className="text-muted-foreground text-xs">
+                          {testimonial.role}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-              </div>
+              ))}
             </div>
 
             {/* Navigation Buttons */}
@@ -164,7 +196,7 @@ const Testimonials = () => {
                         ? "w-8 h-2 bg-primary"
                         : "w-2 h-2 bg-muted-foreground/30 hover:bg-muted-foreground/50"
                     }`}
-                    aria-label={`Go to testimonial ${index + 1}`}
+                    aria-label={`Go to slide ${index + 1}`}
                   />
                 ))}
               </div>
