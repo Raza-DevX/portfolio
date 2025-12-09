@@ -6,6 +6,7 @@ import ThemeToggle from "./ThemeToggle";
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [theme, setTheme] = useState<string>("light");
 
   useEffect(() => {
     const handleScroll = () => {
@@ -13,6 +14,25 @@ const Header = () => {
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  useEffect(() => {
+    // Check initial theme
+    const checkTheme = () => {
+      const isLight = document.documentElement.classList.contains("light");
+      setTheme(isLight ? "light" : "dark");
+    };
+
+    checkTheme();
+
+    // Watch for theme changes
+    const observer = new MutationObserver(checkTheme);
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["class"],
+    });
+
+    return () => observer.disconnect();
   }, []);
 
   const scrollToSection = (id: string) => {
@@ -31,6 +51,10 @@ const Header = () => {
     // { label: "Contact", id: "contact" },
   ];
 
+  const logoSrc = theme === "dark" 
+    ? "/portfolio/razadevx-logo-dark.webp" 
+    : "/portfolio/razadevx-logo-light.webp";
+
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
@@ -43,9 +67,9 @@ const Header = () => {
         {/* Logo */}
         <a href="/portfolio/">
           <img
-            src="/portfolio/razadevx.webp"
+            src={logoSrc}
             alt="DevX Logo"
-            className="h-10 w-auto"
+            className="h-10 w-auto transition-opacity duration-300"
           />
         </a>
         {/* Desktop Navigation */}

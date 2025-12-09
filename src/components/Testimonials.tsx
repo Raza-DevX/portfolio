@@ -99,7 +99,7 @@ const Testimonials = () => {
         <div className="absolute bottom-1/4 -right-20 w-96 h-96 bg-primary/3 rounded-full blur-3xl" />
       </div>
 
-      <div className="container mx-auto px-4 relative z-10">
+      <div className="container mx-auto px-4 relative z-10 space-y-12">
         {/* Section Header */}
         <div className="text-center space-y-4 animate-fade-in-up">
           <div className="inline-block px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-semibold">
