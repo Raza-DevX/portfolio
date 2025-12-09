@@ -5,37 +5,30 @@ const testimonials = [
   {
     name: "Mister Connor",
     role: "MSP Towing Owner",
-    image: "https://raza-devx.github.io/portfolio/public/male-avatar.svg",
+    image: "/portfolio/male-avatar.svg",
     text: "We needed a website that looked different from the usual towing sites, Raza built our entire MSP Towing website from scratch, and the results were exactly what we needed. He turned our service list into a clear, easy-to-navigate layout and delivered a clean, modern design that matched our brand. The site looks professional, loads fast, and helps customers find the right service instantly.",
     rating: 5,
   },
   {
     name: "Sir Rizwan",
     role: "Operations Manager, Cerberus Security",
-    image: "https://raza-devx.github.io/portfolio/public/male-avatar.svg",
+    image: "/portfolio/male-avatar.svg",
     text: "We needed a security website that looked credible and straightforward. From real images to clean service sections and a proper team page, everything was designed to build trust. Smooth experience and great results. The overall look feels reliable and credible, exactly what a security business needs.",
     rating: 5,
   },
   {
     name: "Mr. Ali Raza",
     role: "WBG Store Owner",
-    image: "https://raza-devx.github.io/portfolio/public/male-avatar.svg",
+    image: "/portfolio/male-avatar.svg",
     text: "We needed a platform that could handle phone repairs, product sales, and even let users sell their own phones. Raza pulled it off with custom-built solutions that work smoothly. The structure is clean, the flow makes sense, and the site does everything we asked for. Solid work on a very complex project, all without paid plugins.",
     rating: 5,
   },
   {
     name: "Mr. Ijaz",
     role: "Store Owner",
-    image: "https://raza-devx.github.io/portfolio/public/male-avatar.svg",
+    image: "/portfolio/male-avatar.svg",
     text: "Our main goal was to give customers a smooth, hurdle-free shopping experience. Raza created a clean, simple layout that highlights our products and guides users directly to checkout. No complexity, just a practical and effective grocery site.",
     rating: 5,
-  },
-  {
-    // name: "Falak Sheikh",
-    // role: "Store Owner",
-    // image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face",
-    // text: "Professional, responsive, and incredibly talented. Raza fixed complex bugs that other developers couldn't solve. Highly recommend his services!",
-    // rating: 5,
   },
 ];
 
@@ -43,6 +36,7 @@ const Testimonials = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
   const [itemsPerView, setItemsPerView] = useState(1);
+  const [isPaused, setIsPaused] = useState(false);
 
   useEffect(() => {
     const handleResize = () => {
@@ -67,7 +61,9 @@ const Testimonials = () => {
   const prevTestimonial = () => {
     if (isAnimating) return;
     setIsAnimating(true);
-    setCurrentIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+    setCurrentIndex(
+      (prev) => (prev - 1 + testimonials.length) % testimonials.length
+    );
   };
 
   useEffect(() => {
@@ -93,7 +89,10 @@ const Testimonials = () => {
   const visibleTestimonials = getVisibleTestimonials();
 
   return (
-    <section id="testimonials" className="py-20 md:py-32 bg-card/30 relative overflow-hidden">
+    <section
+      id="testimonials"
+      className="py-20 md:py-32 bg-card/30 relative overflow-hidden"
+    >
       {/* Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-1/4 -left-20 w-72 h-72 bg-primary/5 rounded-full blur-3xl" />
@@ -102,15 +101,17 @@ const Testimonials = () => {
 
       <div className="container mx-auto px-4 relative z-10">
         {/* Section Header */}
-        <div className="text-center mb-16 animate-fade-in">
-          <span className="text-primary text-sm font-medium tracking-wider uppercase mb-4 block">
+        <div className="text-center space-y-4 animate-fade-in-up">
+          <div className="inline-block px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-semibold">
             Testimonials
-          </span>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6">
-            What Clients Say
+          </div>
+          <h2 className="text-4xl md:text-5xl font-bold">
+            What Clients —{" "}
+            <span className="gradient-text">Say</span>
           </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-            Real feedback from real clients who trusted me with their digital presence.
+          <p className="text-muted-foreground max-w-2xl mx-auto">
+            Real feedback from real clients who trusted me with their digital
+            presence.
           </p>
         </div>
 
@@ -120,9 +121,11 @@ const Testimonials = () => {
             {/* Testimonial Grid */}
             <div
               className={`grid gap-6 transition-all duration-500 ${
-                itemsPerView === 3 ? 'grid-cols-3' : 'grid-cols-1'
+                itemsPerView === 3 ? "grid-cols-3" : "grid-cols-1"
               } ${
-                isAnimating ? "opacity-0 translate-y-4" : "opacity-100 translate-y-0"
+                isAnimating
+                  ? "opacity-0 translate-y-4"
+                  : "opacity-100 translate-y-0"
               }`}
             >
               {visibleTestimonials.map((testimonial, idx) => (
@@ -186,7 +189,7 @@ const Testimonials = () => {
               >
                 <ChevronLeft className="w-5 h-5" />
               </button>
-              
+
               {/* Dots */}
               <div className="flex items-center gap-2">
                 {testimonials.map((_, index) => (
