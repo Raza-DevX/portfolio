@@ -176,7 +176,7 @@ const Contact = () => {
                     <Input
                       id="from_name"
                       name="from_name"
-                      placeholder="Jane Doe"
+                      placeholder="Connor Holden"
                       required
                       className="bg-background/50 border-border/50 focus:border-primary/50 transition-colors"
                     />
@@ -190,7 +190,7 @@ const Contact = () => {
                       id="from_email"
                       name="from_email"
                       type="email"
-                      placeholder="jane@example.com"
+                      placeholder="connor@example.com"
                       required
                       className="bg-background/50 border-border/50 focus:border-primary/50 transition-colors"
                     />
