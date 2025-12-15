@@ -1,16 +1,96 @@
+import { useRef, useState } from "react";
+import emailjs from "@emailjs/browser";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Mail, MessageSquare, Github, Linkedin } from "lucide-react";
-import { Instagram } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import {
+  Mail,
+  MessageSquare,
+  Github,
+  Linkedin,
+  Send,
+  MapPin,
+  Phone,
+} from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
 
 const Contact = () => {
+  const formRef = useRef<HTMLFormElement>(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const { toast } = useToast();
+
+  const sendEmail = (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsLoading(true);
+
+    emailjs
+      .sendForm(
+        "service_xvlqulc",
+        "template_2qowt8l",
+        formRef.current!,
+        "C5BDWDkOU-99tgJHs"
+      )
+      .then(() => {
+        toast({
+          title: "Message sent!",
+          description: "Thank you for reaching out. I'll get back to you soon.",
+        });
+        formRef.current?.reset();
+      })
+      .catch((error) => {
+        console.error(error);
+        toast({
+          title: "Failed to send",
+          description: "Something went wrong. Please try again.",
+          variant: "destructive",
+        });
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  };
+
+  const contactInfo = [
+    {
+      icon: Mail,
+      label: "Email",
+      value: "contact@razadevx.com",
+      href: "mailto:contact@razadevx.com",
+    },
+    {
+      icon: Phone,
+      label: "Phone",
+      value: "+92 300 1234567",
+      href: "tel:+923001234567",
+    },
+    {
+      icon: MapPin,
+      label: "Location",
+      value: "Lahore, Pakistan",
+      href: "#",
+    },
+  ];
+
+  const socialLinks = [
+    { icon: Github, href: "#", label: "GitHub" },
+    { icon: Linkedin, href: "#", label: "LinkedIn" },
+  ];
   return (
     <section
       id="contact"
-      className="py-24 bg-gradient-to-b from-background to-secondary/30"
+      className="py-24 bg-gradient-to-b from-background to-secondary/30 relative overflow-hidden"
     >
-      <div className="container mx-auto px-6">
-        <div className="max-w-4xl mx-auto space-y-12">
+      {/* Background decorations */}
+      <div className="absolute top-20 left-10 w-72 h-72 bg-primary/5 rounded-full blur-3xl animate-pulse" />
+      <div
+        className="absolute bottom-20 right-10 w-96 h-96 bg-primary/10 rounded-full blur-3xl animate-pulse"
+        style={{ animationDelay: "1s" }}
+      />
+
+      <div className="container mx-auto px-6 relative z-10">
+        <div className="max-w-6xl mx-auto space-y-12">
+          {/* Header */}
           <div className="text-center space-y-4 animate-fade-in-up">
             <div className="inline-block px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-semibold">
               Get In Touch
@@ -26,100 +106,161 @@ const Contact = () => {
             </p>
           </div>
 
-          <Card
-            className="p-8 md:p-12 border-border/50 bg-card/50 backdrop-blur-sm hover-glow animate-fade-in-up"
-            style={{ animationDelay: "0.2s" }}
-          >
-            <div className="space-y-8">
-              <div className="grid md:grid-cols-2 gap-6">
-                <div className="flex items-center gap-4 p-4 rounded-lg bg-secondary/50 hover:bg-secondary transition-colors">
-                  <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center">
-                    <Mail className="w-6 h-6 text-primary" />
-                  </div>
-                  <div>
-                    <div className="text-sm text-muted-foreground">Email</div>
-                    <div className="font-semibold">
-                      razadeveloperx@gmail.com
+          {/* Two Column Layout */}
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
+            {/* Left Side - Contact Info */}
+            <div
+              className="space-y-8 animate-fade-in-up"
+              style={{ animationDelay: "0.2s" }}
+            >
+              <div className="space-y-6">
+                <h3 className="text-2xl font-bold">Contact Information</h3>
+                <p className="text-muted-foreground">
+                  Feel free to reach out through any of these channels. I
+                  typically respond within 24 hours.
+                </p>
+              </div>
+
+              {/* Contact Cards */}
+              <div className="space-y-4">
+                {contactInfo.map((info, index) => (
+                  <a
+                    key={info.label}
+                    href={info.href}
+                    className="flex items-center gap-4 p-4 rounded-xl bg-card/50 backdrop-blur-sm border border-border/50 hover:border-primary/50 hover:bg-card/80 transition-all duration-300 group hover:scale-[1.02] hover:shadow-lg hover:shadow-primary/10"
+                    style={{ animationDelay: `${0.3 + index * 0.1}s` }}
+                  >
+                    <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+                      <info.icon className="w-5 h-5 text-primary" />
                     </div>
+                    <div>
+                      <div className="text-sm text-muted-foreground">
+                        {info.label}
+                      </div>
+                      <div className="font-semibold group-hover:text-primary transition-colors">
+                        {info.value}
+                      </div>
+                    </div>
+                  </a>
+                ))}
+              </div>
+
+              {/* Social Links */}
+              <div className="space-y-4 pt-4">
+                <h4 className="text-lg font-semibold">Follow Me</h4>
+                <div className="flex gap-4">
+                  {socialLinks.map((social) => (
+                    <a
+                      key={social.label}
+                      href={social.href}
+                      className="w-12 h-12 rounded-xl bg-card/50 backdrop-blur-sm border border-border/50 flex items-center justify-center hover:border-primary/50 hover:bg-primary/10 hover:text-primary transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-primary/10"
+                      aria-label={social.label}
+                    >
+                      <social.icon className="w-5 h-5" />
+                    </a>
+                  ))}
+                </div>
+              </div>
+
+              {/* Decorative Element */}
+              <div className="hidden lg:block relative mt-8">
+                <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-transparent rounded-2xl blur-2xl" />
+                <Card className="relative p-6 border-primary/20 bg-card/30 backdrop-blur-sm">
+                  <div className="flex items-center gap-4">
+                    <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center">
+                      <MessageSquare className="w-8 h-8 text-primary" />
+                    </div>
+                    <div>
+                      <h4 className="font-bold text-lg">
+                        Let's Build Something Amazing
+                      </h4>
+                      <p className="text-muted-foreground text-sm">
+                        Available for freelance projects
+                      </p>
+                    </div>
+                  </div>
+                </Card>
+              </div>
+            </div>
+
+            {/* Right Side - Form */}
+            <Card
+              className="p-8 border-border/50 bg-card/50 backdrop-blur-sm hover-glow animate-fade-in-up"
+              style={{ animationDelay: "0.4s" }}
+            >
+              <form ref={formRef} onSubmit={sendEmail} className="space-y-6">
+                <div className="space-y-2">
+                  <h3 className="text-2xl font-bold">Send Me a Message</h3>
+                  <p className="text-muted-foreground text-sm">
+                    Fill out the form below and I'll get back to you as soon as
+                    possible.
+                  </p>
+                </div>
+
+                <div className="space-y-4">
+                  <div className="space-y-2">
+                    <label htmlFor="from_name" className="text-sm font-medium">
+                      Your Name
+                    </label>
+                    <Input
+                      id="from_name"
+                      name="from_name"
+                      placeholder="Jane Doe"
+                      required
+                      className="bg-background/50 border-border/50 focus:border-primary/50 transition-colors"
+                    />
+                  </div>
+
+                  <div className="space-y-2">
+                    <label htmlFor="from_email" className="text-sm font-medium">
+                      Your Email
+                    </label>
+                    <Input
+                      id="from_email"
+                      name="from_email"
+                      type="email"
+                      placeholder="jane@example.com"
+                      required
+                      className="bg-background/50 border-border/50 focus:border-primary/50 transition-colors"
+                    />
+                  </div>
+
+                  <div className="space-y-2">
+                    <label htmlFor="message" className="text-sm font-medium">
+                      Your Message
+                    </label>
+                    <Textarea
+                      id="message"
+                      name="message"
+                      placeholder="How can I help you?"
+                      required
+                      rows={5}
+                      className="bg-background/50 border-border/50 focus:border-primary/50 transition-colors resize-none"
+                    />
                   </div>
                 </div>
 
-                <a
-                  href="https://wa.me/923267688920"
-                  target="_blank" // Recommended: Opens the WhatsApp link in a new tab
-                  rel="noopener noreferrer" // Security best practice
-                  className="whatsapp block" // Added 'block' to make the link fill the container for the hover effect
+                <Button
+                  type="submit"
+                  size="lg"
+                  className="w-full hover-glow text-lg py-6 group"
+                  disabled={isLoading}
                 >
-                  <div className="flex items-center gap-4 p-4 rounded-lg bg-secondary/50 hover:bg-secondary transition-colors">
-                    <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center">
-                      <MessageSquare className="w-6 h-6 text-primary" />
-                    </div>
-                    <div>
-                      <div className="text-sm text-muted-foreground">Chat</div>
-                      <div className="font-semibold">Let's Discuss</div>
-                    </div>
-                  </div>
-                </a>
-              </div>
-
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-6">
-                <a
-                  href="mailto:razadeveloperx@gmail.com?subject=Inquiry%20from%20Portfolio%20Website"
-                  target="_blank" // This ensures the link is treated as an external destination
-                  rel="noopener noreferrer" // Security best practice for target="_blank"
-                >
-                  <Button
-                    size="lg"
-                    className="hover-glow text-lg px-8 py-6 w-full sm:w-auto"
-                  >
-                    <Mail className="mr-2 w-5 h-5" />
-                    Send Message
-                  </Button>
-                </a>
-                <a
-                  href="https://wa.me/923267688920"
-                  target="_blank" // Opens the link in a new tab
-                  rel="noopener noreferrer" // Security best practice
-                >
-                  <Button
-                    size="lg"
-                    variant="outline"
-                    className="border-primary/30 hover:border-primary hover:bg-primary/10 w-full sm:w-auto"
-                  >
-                    Schedule a Call {/* Original text content remains */}
-                  </Button>
-                </a>
-              </div>
-
-              <div className="flex items-center justify-center gap-4 pt-6 border-t border-border">
-                {/* GitHub Link */}
-                {/* <a
-                  href="https://github.com/Raza-DevX" // ⬅️ GitHub URL added here
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-12 h-12 rounded-lg bg-secondary flex items-center justify-center hover:bg-primary/10 hover:text-primary transition-colors"
-                >
-                  <Github className="w-5 h-5" />
-                </a> */}
-                <a
-                  href="https://www.instagram.com/razadeveloperx/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-12 h-12 rounded-lg bg-secondary flex items-center justify-center hover:bg-primary/10 hover:text-primary transition-colors"
-                >
-                  <Instagram className="w-5 h-5" />
-                </a>
-                <a
-                  href="https://www.linkedin.com/in/razadeveloperx/" // ⬅️ LinkedIn URL added here
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-12 h-12 rounded-lg bg-secondary flex items-center justify-center hover:bg-primary/10 hover:text-primary transition-colors"
-                >
-                  <Linkedin className="w-5 h-5" />
-                </a>
-              </div>
-            </div>
-          </Card>
+                  {isLoading ? (
+                    <span className="flex items-center gap-2">
+                      <div className="w-5 h-5 border-2 border-primary-foreground/30 border-t-primary-foreground rounded-full animate-spin" />
+                      Sending...
+                    </span>
+                  ) : (
+                    <span className="flex items-center gap-2">
+                      <Send className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                      Send Message
+                    </span>
+                  )}
+                </Button>
+              </form>
+            </Card>
+          </div>
         </div>
       </div>
     </section>

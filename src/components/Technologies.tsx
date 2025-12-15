@@ -32,20 +32,20 @@ const Technologies = () => {
 
   return (
     <section className="py-20 md:py-32 overflow-hidden">
-      <div className="container mx-auto px-4 md:px-6 mb-12"></div>
-      <div className="text-center space-y-4 animate-fade-in-up">
-        <div className="inline-block px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-semibold">
-          Tech Stack
+      <div className="container mx-auto px-4 md:px-6 mb-12">
+        <div className="text-center space-y-4 animate-fade-in-up">
+          <div className="inline-block px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-semibold">
+            Tech Stack
+          </div>
+          <h2 className="text-4xl md:text-5xl font-bold">
+            Technologies I <span className="gradient-text">Work With</span>
+          </h2>
+          <p className="text-muted-foreground max-w-2xl mx-auto">
+            A curated collection of tools and technologies I use to bring ideas
+            to life
+          </p>
         </div>
-        <h2 className="text-4xl md:text-5xl font-bold">
-          Technologies I <span className="gradient-text">Work With</span>
-        </h2>
-        <p className="text-muted-foreground max-w-2xl mx-auto">
-          A curated collection of tools and technologies I use to bring ideas to
-          life
-        </p>
       </div>
-
       <div
         className="space-y-6"
         onMouseEnter={() => setIsPaused(true)}
