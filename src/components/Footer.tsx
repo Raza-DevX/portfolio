@@ -4,7 +4,7 @@ import {
   Linkedin,
   Twitter,
   Instagram,
-  Heart,
+  Zap,
   ArrowUp,
   MessageCircle,
 } from "lucide-react";
@@ -56,7 +56,7 @@ const Footer = () => {
 
             <p className="text-sm text-muted-foreground flex items-center justify-center md:justify-start gap-1">
               Made with{" "}
-              <Heart className="h-4 w-4 text-destructive fill-destructive" /> by
+              <Zap className="h-4 w-4 text-destructive fill-destructive" /> by
               RazaDevX
             </p>
 
