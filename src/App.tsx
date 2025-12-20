@@ -13,14 +13,15 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
-      {/* 🎯 FIX APPLIED HERE: Added the basename prop */}
-      <BrowserRouter basename="/portfolio">
+
+      {/* ✅ FIX: NO basename on Vercel */}
+      <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
+
     </TooltipProvider>
   </QueryClientProvider>
 );
