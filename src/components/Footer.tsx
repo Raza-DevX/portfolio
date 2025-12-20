@@ -31,8 +31,8 @@ const Footer = () => {
 
   const logoSrc =
     theme === "dark"
-      ? "/portfolio/razadevx-logo-light.webp"
-      : "/portfolio/razadevx-logo-dark.webp";
+      ? "/razadevx-logo-light.webp"
+      : "/razadevx-logo-dark.webp";
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -46,7 +46,7 @@ const Footer = () => {
         <div className="flex flex-col md:flex-row justify-between items-center gap-6">
           {/* Logo & Info */}
           <div className="text-center md:text-left">
-            <a href="/portfolio/" className="inline-block mb-2">
+            <a href="/" className="inline-block mb-2">
               <img
                 src={logoSrc}
                 alt="RazaDevX Logo"

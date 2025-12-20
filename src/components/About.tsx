@@ -35,7 +35,7 @@ const About = () => {
               </div>
 
               <a
-                href="/portfolio/Raza_DevX-Resume.pdf"
+                href="/Raza_DevX-Resume.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
               >

@@ -7,42 +7,42 @@ const Portfolio = () => {
       title: "MSP Tows",
       description: "Car Towing Services Platform",
       category: "Service Industry",
-      image: "/portfolio/msptows.webp", // UPDATED URL
+      image: "/msptows.webp", // UPDATED URL
       link: "https://msptows.com/", // Add your project link here
     },
     {
       title: "Cerberus Security",
       description: "Security Guard Services",
       category: "Security",
-      image: "/portfolio/cerberus-security.webp", // UPDATED URL
+      image: "/cerberus-security.webp", // UPDATED URL
       link: "https://cerberussec.co.uk",
     },
     {
       title: "Swift Guard Security",
       description: "Professional Security Services",
       category: "Security",
-      image: "/portfolio/swift-guard-security.webp", // UPDATED URL
+      image: "/swift-guard-security.webp", // UPDATED URL
       link: "https://swiftguardsecurity.com",
     },
     {
       title: "World Boss Group",
       description: "Phone Accessories & Repair",
       category: "E-Commerce",
-      image: "/portfolio/worldbossgroup.webp", // UPDATED URL
+      image: "/worldbossgroup.webp", // UPDATED URL
       link: "https://worldbossgroup.com",
     },
     {
       title: "Weaversha Accountants",
       description: "Professional Accounting Services",
       category: "Finance",
-      image: "/portfolio/weaversha.webp", // UPDATED URL
+      image: "/weaversha.webp", // UPDATED URL
       link: "https://weaversha.co.uk/",
     },
     {
       title: "Euro Mattress",
       description: "Premium Mattress Store",
       category: "E-Commerce",
-      image: "/portfolio/euro-mattress.webp", // UPDATED URL
+      image: "/euro-mattress.webp", // UPDATED URL
       link: "https://euromattress.co.uk",
     },
   ];
@@ -80,7 +80,7 @@ const Portfolio = () => {
                   <div className="relative aspect-video overflow-hidden">
                     {/* Image from public folder */}
                     <img
-                      src={project.image} // Path starts from the public folder (e.g., /images/portfolio-1.jpg refers to public/images/portfolio-1.jpg)
+                      src={project.image} 
                       alt={`Screenshot of ${project.title} project`}
                       className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-[1.03]"
                     />

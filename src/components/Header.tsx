@@ -52,8 +52,8 @@ const Header = () => {
   ];
 
   const logoSrc = theme === "dark" 
-    ? "/portfolio/razadevx-logo-dark.webp" 
-    : "/portfolio/razadevx-logo-light.webp";
+    ? "/razadevx-logo-dark.webp" 
+    : "/razadevx-logo-light.webp";
 
   return (
     <header
@@ -65,7 +65,7 @@ const Header = () => {
     >
       <div className="container mx-auto px-6 py-4 flex items-center justify-between">
         {/* Logo */}
-        <a href="/portfolio/">
+        <a href="/">
           <img
             src={logoSrc}
             alt="DevX Logo"
