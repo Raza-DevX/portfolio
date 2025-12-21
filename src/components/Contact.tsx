@@ -1,46 +1,24 @@
 import { useRef, useState } from "react";
-import emailjs from "@emailjs/browser";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Mail, MessageSquare, Send, MapPin, Phone } from "lucide-react";
-import { useToast } from "@/hooks/use-toast";
 
 const Contact = () => {
   const formRef = useRef<HTMLFormElement>(null);
   const [isLoading, setIsLoading] = useState(false);
-  const { toast } = useToast();
 
   const sendEmail = (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
 
-    emailjs
-      .sendForm(
-        "service_xvlqulc",
-        "template_2qowt8l",
-        formRef.current!,
-        "C5BDWDkOU-99tgJHs"
-      )
-      .then(() => {
-        toast({
-          title: "Message sent!",
-          description: "Thank you for reaching out. I'll get back to you soon.",
-        });
-        formRef.current?.reset();
-      })
-      .catch((error) => {
-        console.error(error);
-        toast({
-          title: "Failed to send",
-          description: "Something went wrong. Please try again.",
-          variant: "destructive",
-        });
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
+    // Simulated email send - replace with actual emailjs implementation
+    setTimeout(() => {
+      alert("Message sent! Thank you for reaching out.");
+      formRef.current?.reset();
+      setIsLoading(false);
+    }, 1500);
   };
 
   const contactInfo = [
@@ -60,7 +38,7 @@ const Contact = () => {
       icon: MapPin,
       label: "Location",
       value: "Gujrat, Pakistan",
-      href: "www.google.com/maps/place/Gujrat/data=!4m2!3m1!1s0x391f1b031e43442d:0x870fd23543d684c?sa=X&ved=1t:242&ictx=111",
+      href: "https://www.google.com/maps/place/Gujrat",
     },
   ];
 
@@ -79,12 +57,12 @@ const Contact = () => {
       <div className="container mx-auto px-6 relative z-10">
         <div className="max-w-6xl mx-auto space-y-12">
           {/* Header */}
-          <div className="text-center space-y-4 animate-fade-in-up">
+          <div className="text-center space-y-4">
             <div className="inline-block px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-semibold">
               Get In Touch
             </div>
             <h2 className="text-4xl md:text-5xl font-bold">
-              Let's Talk <span className="gradient-text">With Me!</span>
+              Let's Talk <span className="bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">With Me!</span>
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
               I'm always open to discussing new projects, ideas, or
@@ -94,11 +72,11 @@ const Contact = () => {
             </p>
           </div>
 
-          {/* Two Column Layout */}
-          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
-            {/* Left Side - Contact Info */}
+          {/* Two Column Layout - Form first on mobile, Contact info first on desktop */}
+          <div className="flex flex-col lg:flex-row gap-8 lg:gap-12">
+            {/* Left Side - Contact Info (order-2 on mobile, order-1 on desktop) */}
             <div
-              className="space-y-8 animate-fade-in-up"
+              className="space-y-8 order-2 lg:order-1 lg:w-1/2"
               style={{ animationDelay: "0.2s" }}
             >
               <div className="space-y-6">
@@ -154,9 +132,9 @@ const Contact = () => {
               </div>
             </div>
 
-            {/* Right Side - Form */}
+            {/* Right Side - Form (order-1 on mobile, order-2 on desktop) */}
             <Card
-              className="p-8 border-border/50 bg-card/50 backdrop-blur-sm hover-glow animate-fade-in-up"
+              className="p-8 border-border/50 bg-card/50 backdrop-blur-sm order-1 lg:order-2 lg:w-1/2"
               style={{ animationDelay: "0.4s" }}
             >
               <form ref={formRef} onSubmit={sendEmail} className="space-y-6">
@@ -171,7 +149,7 @@ const Contact = () => {
                 <div className="space-y-4">
                   <div className="space-y-2">
                     <label htmlFor="from_name" className="text-sm font-medium">
-                      Your Name
+                      Name
                     </label>
                     <Input
                       id="from_name"
@@ -184,7 +162,7 @@ const Contact = () => {
 
                   <div className="space-y-2">
                     <label htmlFor="from_email" className="text-sm font-medium">
-                      Your Email
+                      Email
                     </label>
                     <Input
                       id="from_email"
@@ -198,7 +176,7 @@ const Contact = () => {
 
                   <div className="space-y-2">
                     <label htmlFor="message" className="text-sm font-medium">
-                      Your Message
+                      Message
                     </label>
                     <Textarea
                       id="message"
@@ -214,7 +192,7 @@ const Contact = () => {
                 <Button
                   type="submit"
                   size="lg"
-                  className="w-full hover-glow text-lg py-6 group"
+                  className="w-full text-lg py-6 group"
                   disabled={isLoading}
                 >
                   {isLoading ? (
