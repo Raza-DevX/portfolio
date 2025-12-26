@@ -6,11 +6,10 @@ const WhatsAppButton = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [message, setMessage] = useState("");
   
-  // Replace with your WhatsApp number (include country code without + or spaces)
-  const phoneNumber = "1234567890";
+  const phoneNumber = "+923267688920";
   
   const handleSendMessage = () => {
-    const encodedMessage = encodeURIComponent(message || "Hi! I'm interested in your design services.");
+    const encodedMessage = encodeURIComponent(message || "Hi! I'm interested in your services.");
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
     window.open(whatsappUrl, "_blank");
     setMessage("");
@@ -18,7 +17,7 @@ const WhatsAppButton = () => {
   };
 
   return (
-    <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-4">
+    <div className="fixed bottom-6 right-6 md:bottom-1/4 z-20 flex flex-col items-end gap-4">
       {/* Chat Popup */}
       <AnimatePresence>
         {isOpen && (
@@ -60,7 +59,7 @@ const WhatsAppButton = () => {
               <div className="p-4 bg-background/50">
                 <div className="bg-card rounded-xl p-3 mb-4 border border-border/50">
                   <p className="text-sm text-foreground">
-                    👋 Hi there! How can I help you with your design project?
+                    👋 Hi there! How can I help you with your project?
                   </p>
                   <span className="text-xs text-muted-foreground mt-1 block">Just now</span>
                 </div>
@@ -99,13 +98,13 @@ const WhatsAppButton = () => {
         onClick={() => setIsOpen(!isOpen)}
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
-        className="relative w-14 h-14 rounded-full bg-primary flex items-center justify-center shadow-lg group pointer-events-auto"
+        className="relative w-12 h-12 rounded-full bg-primary flex items-center justify-center shadow-lg group pointer-events-auto"
       >
         {/* Pulse Ring */}
-        <span className="absolute inset-0 rounded-full bg-primary animate-ping opacity-20" />
+        <span className="absolute inset-0 rounded-full bg-primary animate-ping opacity-10" />
         
         {/* Glow Effect */}
-        <span className="absolute inset-0 rounded-full bg-primary blur-md opacity-40 group-hover:opacity-60 transition-opacity duration-300" />
+        <span className="absolute inset-0 rounded-full bg-primary blur-md opacity-20 group-hover:opacity-40 transition-opacity duration-300" />
         
         {/* Icon */}
         <motion.div
