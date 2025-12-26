@@ -68,7 +68,7 @@ const Footer = () => {
           {/* Social Links */}
           <div className="flex items-center gap-4">
             <a
-              href="https://github.com/Raza-DevX"
+              href="https://github.com/RazaDevX"
               target="_blank"
               rel="noopener noreferrer"
               className="p-3 rounded-full bg-secondary hover:bg-muted transition-colors group"
