@@ -18,7 +18,7 @@ const WhatsAppButton = () => {
   };
 
   return (
-    <div className="fixed bottom-6 right-6 md:bottom-1/4 z-20 flex flex-col items-end gap-4">
+    <div className="fixed bottom-6 right-6 md:bottom-1/4 z-20 flex flex-col items-end gap-4 pointer-events-none">
       {/* Chat Popup */}
       <motion.div
         initial={{ opacity: 0, scale: 0.8, y: 20 }}
@@ -77,7 +77,7 @@ const WhatsAppButton = () => {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={handleSendMessage}
-                className="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-primary-foreground"
+                className="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-primary-foreground pointer-events-auto"
               >
                 <svg viewBox="0 0 24 24" className="w-5 h-5 fill-current">
                   <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
