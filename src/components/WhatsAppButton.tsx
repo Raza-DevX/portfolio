@@ -43,7 +43,7 @@ const WhatsAppButton = () => {
                       Chat with me
                     </h4>
                     <p className="text-primary-foreground/70 text-xs">
-                      Usually replies instantly
+                      Usually replies within few hours
                     </p>
                   </div>
                 </div>

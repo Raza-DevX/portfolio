@@ -18,19 +18,11 @@ const About = () => {
 
               <div className="space-y-4 text-muted-foreground leading-relaxed">
                 <p>
-                  I'm Raza, a Web Developer passionate about turning ideas into
-                  interactive designs. While WordPress is my main tool, I focus
-                  on more than just themes and plugins — I prioritize
-                  performance, usability, and quality craftsmanship to create
-                  websites that truly stand out.
+                  I’m passionate about turning ideas into interactive, meaningful websites. WordPress is my main tool, but my focus goes beyond just themes and plugins. I prioritize performance, usability, and clean craftsmanship to build websites that truly stand out.
                 </p>
 
                 <p>
-                  I specialize in building beautiful, optimized, SEO-friendly,
-                  and scalable websites. Each project is a chance to grow both
-                  technically and personally. What sets me apart isn't just my
-                  skills, but my patient, disciplined mindset and my belief that
-                  small details make a big impact.
+                  I specialize in creating strong foundations with SEO basics, optimized performance, thoughtful design, and scalable structure. Every project helps me grow—both technically and professionally. What sets me apart isn’t just my skills, but my patience, continuous learning mindset, and strong belief that small details create a big impact.
                 </p>
               </div>
 
